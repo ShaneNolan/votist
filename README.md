@@ -52,13 +52,16 @@ weighted avg       1.00      1.00      1.00    259335
 ```
 
 # Performance
+
 Votist was deployed using Docker (i7-8700K @ 3.70Ghz with 8 CPUs, 8GB of Memory) and load tested using [Locust](https://locust.io/).
 
-With `500 users` the system handled `163 requests` per second and responded in `21ms` in the `50%ile` range and `150` in the `95%ile` range. Out of 376201 requests, 97 of them failed.
+With `500 users` the system handled `163 requests` per second and responded in `21ms` in the `50%ile` range and `150` in the `95%ile` range. Out of 376201 requests, 97 of them failed. [Click here for the report](./docs/reports/report_500.html).
 
-With `1000 users` the system handled `273 requests` per second and responded in `250ms` in the `50%ile` range and `2300` in the `95%ile` range. Out of 234095 requests, 2530 of them failed.
+With `1000 users` the system handled `273 requests` per second and responded in `250ms` in the `50%ile` range and `2300` in the `95%ile` range. Out of 234095 requests, 2530 of them failed. [Click here for the report](./docs/reports/report_1000.html).
 
-Analysing the Votist container CPU usage using [cAdvisor](https://github.com/google/cadvisor) seemed healthy with on average of 90% usage.
+Analysing the Votist container CPU usage using [cAdvisor](https://github.com/google/cadvisor) seemed healthy with an average of 90% usage.
+
+![cAdvisor CPU usage](docs/imgs/cadvisor_cpu.png)
 
 We can improve performance by implementing a load balancing and scaling more instances of Votist to distrbiute the load.
 Additionally we can change our orchestrator from docker-compose to Kubernetes, to auto-scale our application for larger loads with netter monitoring and better CNIs.
