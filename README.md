@@ -61,7 +61,7 @@ With `1000 users` the system handled `273 requests` per second and responded in 
 
 Analysing the Votist container CPU usage using [cAdvisor](https://github.com/google/cadvisor) seemed healthy with an average of 90% usage.
 
-![cAdvisor CPU usage](docs/imgs/cadvisor_cpu.png)
+![cAdvisor CPU usage](docs/imgs/cadvisor_cpu_usage.png)
 
 We can improve performance by implementing a load balancing and scaling more instances of Votist to distrbiute the load.
 Additionally we can change our orchestrator from docker-compose to Kubernetes, to auto-scale our application for larger loads with netter monitoring and better CNIs.
