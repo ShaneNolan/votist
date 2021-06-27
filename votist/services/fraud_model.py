@@ -4,15 +4,6 @@ from joblib import load as joblib_load
 
 
 class FraudModel:
-
-    def __new__(cls):
-        attribute_instance = 'instance'
-
-        if not hasattr(cls, attribute_instance):  # noqa: WPS421
-            cls.instance = super().__new__(cls)
-
-        return cls.instance
-
     def __init__(self):
         self._model = joblib_load('model.joblib')
 

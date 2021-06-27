@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      - votist_nw
+
+  master:
+    image: locustio/locust
+    ports:
+      - "8089:8089"
+    networks:
+      - votist_nw
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/tests/load_test.py --master
+
+  worker:
+    image: locustio/locust
+    networks:
+      - votist_nw
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/tests/load_test.py --worker --master-host master
+
+networks:
+  votist_nw:
